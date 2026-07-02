@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Home</title>
+    <style>
+      :root {
+        --sea-dark: #071b2c;
+        --sea-mid: #1f6f91;
+        --sea-bright: #6fd3ff;
+        --text: #f4fbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #06111d 0%, #113a5a 45%, #2d7fa8 100%);
+        color: var(--text);
+        overflow: hidden;
+      }
+
+      .scene {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+
+      .card {
+        position: relative;
+        z-index: 3;
+        width: min(92vw, 560px);
+        padding: 2.2rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        text-align: center;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #dff8ff;
+      }
+
+      h1 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      p {
+        margin: 0 0 1.2rem;
+        line-height: 1.7;
+        color: rgba(244, 251, 255, 0.92);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #7be4ff, #2f8ec7);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 10px 24px rgba(47, 142, 199, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(47, 142, 199, 0.45);
+      }
+
+      .btn.pulse {
+        animation: pulse 0.45s ease;
+      }
+
+      .wave {
+        position: absolute;
+        left: -10%;
+        width: 120%;
+        height: 180px;
+        border-radius: 50%;
+        opacity: 0.92;
+        filter: blur(1px);
+      }
+
+      .wave-one {
+        bottom: -90px;
+        background: linear-gradient(90deg, rgba(95, 223, 255, 0.95), rgba(255,255,255,0.16));
+      }
+
+      .wave-two {
+        bottom: -50px;
+        height: 140px;
+        background: linear-gradient(90deg, rgba(67, 174, 238, 0.9), rgba(255,255,255,0.14));
+        opacity: 0.8;
+      }
+
+      .wave-three {
+        bottom: -12px;
+        height: 100px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.24), rgba(75, 181, 255, 0.75));
+        opacity: 0.7;
+      }
+
+      .bubble {
+        position: absolute;
+        bottom: -20px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+        animation: floatUp 6s linear infinite;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translate3d(0, 0, 0) scale(0.8);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translate3d(0, -110vh, 0) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.04);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene">
+      <div class="wave wave-one"></div>
+      <div class="wave wave-two"></div>
+      <div class="wave wave-three"></div>
+
+      <div class="card">
+        <div class="eyebrow" id="greeting">Hello there</div>
+        <h1>Welcome to a brighter shoreline</h1>
+        <p>This page now has moving waves, floating bubbles, and a little motion when you hover or click.</p>
+        <a class="btn" id="exploreBtn" href="web/index.html">Open the web portfolio</a>
+      </div>
+    </div>
+
+    <script>
+      const waves = document.querySelectorAll('.wave');
+      const card = document.querySelector('.card');
+      const greeting = document.getElementById('greeting');
+      const exploreBtn = document.getElementById('exploreBtn');
+
+      function updateGreeting() {
+        const hour = new Date().getHours();
+        let message = 'Hello there';
+        if (hour < 12) message = 'Good morning';
+        else if (hour < 18) message = 'Good afternoon';
+        else message = 'Good evening';
+        greeting.textContent = message;
+      }
+
+      updateGreeting();
+
+      function animateWaves(time) {
+        waves.forEach((wave, index) => {
+          const offset = Math.sin(time / 1800 + index) * 10;
+          const drift = Math.cos(time / 2500 + index * 1.3) * 6;
+          wave.style.transform = `translate3d(${offset}px, ${drift}px, 0)`;
+        });
+        requestAnimationFrame(animateWaves);
+      }
+
+      requestAnimationFrame(animateWaves);
+
+      document.addEventListener('mousemove', (event) => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 10;
+        const y = (event.clientY / window.innerHeight - 0.5) * 10;
+        card.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-6px)`;
+      });
+
+      document.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+
+      function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = 4 + Math.random() * 4 + 's';
+        bubble.style.opacity = 0.5 + Math.random() * 0.4;
+        document.querySelector('.scene').appendChild(bubble);
+        setTimeout(() => bubble.remove(), 8000);
+      }
+
+      setInterval(createBubble, 500);
+
+      exploreBtn.addEventListener('click', () => {
+        exploreBtn.classList.remove('pulse');
+        void exploreBtn.offsetWidth;
+        exploreBtn.classList.add('pulse');
+      });
+    </script>
+  </body>
+</html>
