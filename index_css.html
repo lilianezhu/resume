@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Home</title>
+    <style>
+      :root {
+        --sea-deep: #0f3b5c;
+        --sea-mid: #2c7fb8;
+        --sea-light: #6fd3ff;
+        --foam: #f4fbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--foam);
+        background: linear-gradient(135deg, #071b2c 0%, #0f3b5c 45%, #1f6f91 100%);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        left: -10%;
+        width: 120%;
+        height: 180px;
+        border-radius: 50%;
+        opacity: 0.95;
+        animation: drift 6s ease-in-out infinite alternate;
+      }
+
+      body::before {
+        bottom: -80px;
+        background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45), transparent 35%),
+          linear-gradient(90deg, rgba(117, 219, 255, 0.82), rgba(255,255,255,0.28));
+        filter: blur(1px);
+        transform-origin: center bottom;
+      }
+
+      body::after {
+        bottom: -30px;
+        height: 140px;
+        background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.35), transparent 30%),
+          linear-gradient(90deg, rgba(74, 176, 255, 0.95), rgba(255,255,255,0.2));
+        animation-duration: 4.5s;
+        animation-name: driftAlt;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: min(92vw, 560px);
+        padding: 2.2rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+      }
+
+      .title {
+        margin: 0 0 0.7rem;
+        font-size: 2.1rem;
+        letter-spacing: 0.04em;
+      }
+
+      .subtitle {
+        margin: 0 0 1.2rem;
+        font-size: 1rem;
+        color: rgba(244, 251, 255, 0.9);
+      }
+
+      .button {
+        display: inline-block;
+        padding: 0.8rem 1.3rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #7be4ff, #2f8ec7);
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 10px 24px rgba(47, 142, 199, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(47, 142, 199, 0.45);
+      }
+
+      .spark {
+        display: inline-block;
+        margin-right: 0.4rem;
+        color: #dff8ff;
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translateX(-6%) translateY(0) scaleX(1);
+        }
+        50% {
+          transform: translateX(3%) translateY(-10px) scaleX(1.05);
+        }
+        100% {
+          transform: translateX(6%) translateY(6px) scaleX(1.08);
+        }
+      }
+
+      @keyframes driftAlt {
+        0% {
+          transform: translateX(-4%) translateY(0) scaleX(1);
+        }
+        50% {
+          transform: translateX(4%) translateY(-6px) scaleX(1.03);
+        }
+        100% {
+          transform: translateX(-2%) translateY(4px) scaleX(1.06);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1 class="title">Welcome to the Shore</h1>
+      <p class="subtitle">A calm ocean-inspired landing page with rolling waves and a bright, polished look.</p>
+      <a class="button" href="web/index.html"><span class="spark">✦</span>Open the web portfolio</a>
+    </div>
+  </body>
+</html>
