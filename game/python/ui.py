@@ -1,5 +1,9 @@
 import pygame
-from .settings import BLACK, BLUE, GREEN, RED, WHITE, WIDTH, HEIGHT, FONT_SIZE, SMALL_FONT_SIZE
+
+try:
+    from .settings import BLACK, BLUE, GREEN, RED, WHITE, WIDTH, HEIGHT, FONT_SIZE, SMALL_FONT_SIZE
+except ImportError:
+    from settings import BLACK, BLUE, GREEN, RED, WHITE, WIDTH, HEIGHT, FONT_SIZE, SMALL_FONT_SIZE
 
 
 class UI:

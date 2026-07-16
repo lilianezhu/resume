@@ -1,15 +1,28 @@
 import random
 import pygame
-from .settings import (
-    BLUE,
-    GREEN,
-    PLAYER_BULLET_SPEED,
-    PLAYER_HEALTH,
-    PLAYER_SPEED,
-    RED,
-    WHITE,
-    YELLOW,
-)
+
+try:
+    from .settings import (
+        BLUE,
+        GREEN,
+        PLAYER_BULLET_SPEED,
+        PLAYER_HEALTH,
+        PLAYER_SPEED,
+        RED,
+        WHITE,
+        YELLOW,
+    )
+except ImportError:
+    from settings import (
+        BLUE,
+        GREEN,
+        PLAYER_BULLET_SPEED,
+        PLAYER_HEALTH,
+        PLAYER_SPEED,
+        RED,
+        WHITE,
+        YELLOW,
+    )
 
 
 class Entity:

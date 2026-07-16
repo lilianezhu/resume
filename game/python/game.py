@@ -1,17 +1,35 @@
 import random
+import sys
+from pathlib import Path
+
 import pygame
-from .collision import resolve_collisions
-from .entities import Bullet, Enemy, Player, PowerUp
-from .settings import (
-    ENEMY_BULLET_SPEED,
-    ENEMY_FIRE_COOLDOWN,
-    ENEMY_SPAWN_INTERVAL,
-    FPS,
-    HEIGHT,
-    POWERUP_SPAWN_CHANCE,
-    WIDTH,
-)
-from .ui import UI
+
+if __package__ in {None, ""}:
+    current_dir = Path(__file__).resolve().parent
+    if str(current_dir) not in sys.path:
+        sys.path.append(str(current_dir))
+
+    from collision import resolve_collisions
+    from entities import Enemy, Player, PowerUp
+    from settings import (
+        ENEMY_SPAWN_INTERVAL,
+        FPS,
+        HEIGHT,
+        POWERUP_SPAWN_CHANCE,
+        WIDTH,
+    )
+    from ui import UI
+else:
+    from .collision import resolve_collisions
+    from .entities import Enemy, Player, PowerUp
+    from .settings import (
+        ENEMY_SPAWN_INTERVAL,
+        FPS,
+        HEIGHT,
+        POWERUP_SPAWN_CHANCE,
+        WIDTH,
+    )
+    from .ui import UI
 
 
 class SpaceShooterGame:
