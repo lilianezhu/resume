@@ -26,6 +26,8 @@ Then open:
 ```text
 http://127.0.0.1:5000/
 ```
+<img width="722" height="376" alt="image" src="https://github.com/user-attachments/assets/0f380397-d1db-4c44-b166-1c3163d370ee" />
+
 
 ## Run tests
 
